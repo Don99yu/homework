@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="ko">
+
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+              integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+              crossorigin="anonymous">
+
+        <!-- JS -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+                integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+                crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+                integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+                crossorigin="anonymous"></script>
+
+        <!-- 구글폰트 -->
+        <link href="https://fonts.googleapis.com/css?family=Stylish&display=swap" rel="stylesheet">
+
+
+        <title>원페이지 쇼핑몰!</title>
+
+        <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR&display=swap" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="homeworkStyle.css">
+
+        <script>
+            $(document).ready(function(){
+                $.ajax({
+                  type: "GET", // GET 방식으로 요청한다.
+                  url: "https://api.manana.kr/exchange/rate.json",
+                  data: {}, // 요청하면서 함께 줄 데이터 (GET 요청시엔 비워두세요)
+                  success: success
+                })
+            });
+
+            function success(response) {
+                let rows = response[1]['rate'];
+                $('#nowRate').text(rows);
+                console.log(rows);
+            }
+
+            function order() {
+                let ordNm = $('#ord-name').val();
+                let ordCount = $('#ord-count').val();
+                let ordAddress = $('#ord-address').val();
+                let ordPhone = $('#ord-phone').val();
+
+                if(ordNm == ''){
+                    alert("이름을 입력해주세요");
+                    return;
+                }else if(ordCount =='- 선택 -'){
+                    alert("수량을 선택해주세요");
+                    return;
+                }else if(ordAddress == ''){
+                    alert("주소를 입력해주세요");
+                    return;
+                }else if(ordPhone == ''){
+                    alert("전화번호를 입력해주세요");
+                    return;
+                }
+                console.log(ordNm, ordCount, ordAddress, ordPhone);
+                alert("주문이 완료되었습니다.");
+            }
+        </script>
+    </head>
+
+    <body>
+        <div class="myItem">
+            <div class="img"></div>
+            <div class="item-info">
+                <h1>노트북 판매합니다 <span class="price">가격: 1,500,000 원</span></h1>
+                <p>이 제품은 뛰어난 디자인, 휴대성과 성능을 잘 갖춘 노트북입니다. 이번 제품의 가장 큰 특징은 지난 모델들에 비해 배터리는 늘어나고 속도는 더 빨라졌다는 것이다.</p>
+
+                <p class="rate">달러 - 원 환율 : <span id="nowRate"></span></p>
+            </div>
+            <div class="contents">
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="ordName">주문자</span>
+                    </div>
+                    <input id="ord-name" type="text" class="form-control" aria-label="Default"
+                           aria-describedby="inputGroup-sizing-default">
+                </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <label class="input-group-text" for="ord-count">수량</label>
+                    </div>
+                    <select class="custom-select" id="ord-count">
+                        <option selected>- 선택 -</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                    </select>
+                </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="ordAddress">주소</span>
+                    </div>
+                    <input id="ord-address" type="text" class="form-control" aria-label="Default"
+                           aria-describedby="inputGroup-sizing-default">
+                </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="ordPhone">전화</span>
+                    </div>
+                    <input id="ord-phone" type="text" class="form-control" aria-label="Default"
+                           aria-describedby="inputGroup-sizing-default">
+                </div>
+                <!--
+                <button type="button" class="btn btn-primary mybtn" onclick="order()">주문하기</button>
+                -->
+                <button type="button" class="btn btn-primary mybtn"
+                        onclick="order()">주문하기
+                </button>
+            </div>
+        </div>
+    </body>
+
+</html>

@@ -1,0 +1,37 @@
+.myItem {
+    margin: auto;
+    width: 500px;
+    font-family: 'Noto Serif KR', serif;
+}
+
+.img {
+    width: 500px;
+    height: 300px;
+
+    background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcR92cot452C1erkW4dhIqN1xH3JOu6EKWgayQ&usqp=CAU");
+    background-position: center;
+    background-size: cover;
+}
+
+.item-info {
+    width: 500px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.price {
+    font-size: 15px;
+}
+
+.contents {
+    width: 500px;
+}
+
+.mybtn {
+    margin: auto;
+    display: block;
+}
+
+.rate {
+    color: blue;
+}
