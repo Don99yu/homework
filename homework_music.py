@@ -1,3 +1,8 @@
+from pymongo import MongoClient
+
+client = MongoClient('localhost', 27017)
+db = client.dbsparta
+
 import requests
 from bs4 import BeautifulSoup
 
@@ -15,6 +20,7 @@ for music in musics:
     rank = music.select_one('td.number').text[0:2].strip()
     title = music.select_one('td.info > a.title.ellipsis').text.strip()
     artist = music.select_one('td.info > a.artist.ellipsis').text
-    if rank and title and artist is not None:
-        # a의 text를 찍어본다.
-        print (rank, title, artist)
+
+    musics = {'rank':rank, 'title':title, 'artist':artist}
+
+    db.genie_music.insert_one(musics)
